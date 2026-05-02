@@ -48,6 +48,7 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
+    display: none;
     padding: 1.2rem 2rem;
     display: flex;
     align-items: center;
@@ -144,7 +145,7 @@
 
   .slide-intro .slide-img {
     flex: 1;
-    background: url('intro.png') center top / cover no-repeat;
+    background: url('intro.png') center center / cover no-repeat;
     min-height: 60vh;
   }
 
@@ -161,7 +162,7 @@
 
   .slide-ipgo .slide-img {
     flex: 1;
-    background: url('ipgo.png') center top / cover no-repeat;
+    background: url('ipgo.png') center center / cover no-repeat;
     min-height: 60vh;
   }
 
@@ -1724,15 +1725,14 @@ function landingNext() {
 }
 
 function enterTemple() {
-  // 랜딩 페이지 숨기고 메인으로
   startWind();
   const landing = document.getElementById('landing');
   landing.style.transition = 'opacity 1s ease';
   landing.style.opacity = '0';
   setTimeout(() => {
     landing.style.display = 'none';
+    document.querySelector('header').style.display = 'flex';
     showSection('consult');
-    // 상담 화면 진입시 종소리
     setTimeout(() => playBell(), 500);
     setTimeout(() => stopWind(), 8000);
   }, 1000);
