@@ -116,24 +116,24 @@
   /* ===== 랜딩 페이지 ===== */
   #landing {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
     z-index: 9999;
     overflow: hidden;
-    background: #0a0806;
   }
 
   .landing-slide {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0; left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
     opacity: 0;
     transition: opacity 0.8s ease;
     pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   .landing-slide.active {
@@ -141,123 +141,85 @@
     pointer-events: all;
   }
 
-  /* 슬라이드 1 — 절 외관 */
+  /* 각 슬라이드 배경 */
   .slide-intro {
     background: url('/intro.png') center center / cover no-repeat;
-    justify-content: flex-end;
   }
 
-  .slide-intro .slide-bottom {
-    background: linear-gradient(to bottom, transparent, rgba(240, 232, 220, 0.97) 30%);
-    padding: 3rem 2rem 3rem;
-    text-align: center;
-  }
-
-  /* 슬라이드 2 — 불상 */
   .slide-ipgo {
     background: url('/ipgo.png') center center / cover no-repeat;
-    justify-content: flex-end;
+  }
+
+  .slide-monk {
+    background: url('/monk.png') center top / cover no-repeat;
+  }
+
+  /* 하단 텍스트 영역 */
+  .slide-intro .slide-bottom {
+    background: linear-gradient(to bottom, transparent 0%, rgba(240, 232, 218, 0.95) 40%, rgba(240, 232, 218, 1) 100%);
+    padding: 5rem 2rem 3rem;
+    text-align: center;
   }
 
   .slide-ipgo .slide-bottom {
-    background: linear-gradient(to bottom, transparent, rgba(15, 10, 4, 0.96) 25%);
-    padding: 3rem 2rem 3rem;
+    background: linear-gradient(to bottom, transparent 0%, rgba(12, 8, 3, 0.95) 40%, rgba(8, 5, 2, 1) 100%);
+    padding: 5rem 2rem 3rem;
     text-align: center;
-  }
-
-  /* 슬라이드 3 — 스님 */
-  .slide-monk {
-    background: url('/monk.png') center top / cover no-repeat;
-    justify-content: flex-end;
   }
 
   .slide-monk .slide-content {
-    background: linear-gradient(to bottom, transparent, rgba(5, 3, 1, 0.95) 20%);
-    padding: 2rem 1.5rem 3rem;
+    background: linear-gradient(to bottom, transparent 0%, rgba(5, 3, 1, 0.95) 30%, rgba(3, 2, 0, 1) 100%);
+    padding: 5rem 1.5rem 3rem;
     text-align: center;
   }
 
-  .monk-quote-box {
-    background: rgba(10, 8, 6, 0.82);
-    border: 1px solid rgba(200, 169, 110, 0.3);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    text-align: left;
-  }
-
-  .monk-quote-box .lotus {
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 12px;
-    color: var(--gold);
-  }
-
-  .monk-quote-text {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 15px;
-    line-height: 2;
-    color: #e8d5b0;
-    font-weight: 300;
-  }
-
-  .monk-waiting {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 14px;
-    color: rgba(200, 169, 110, 0.8);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-  }
-
-  /* 공통 텍스트 */
+  /* 텍스트 스타일 */
   .landing-title {
     font-family: 'Noto Serif KR', serif;
-    font-size: clamp(18px, 5vw, 24px);
+    font-size: clamp(20px, 4vw, 28px);
     font-weight: 400;
     line-height: 1.7;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
 
   .slide-intro .landing-title { color: #3d2e1e; }
   .slide-ipgo .landing-title { color: #c8a96e; }
 
   .landing-lotus {
-    font-size: 16px;
-    margin: 0.5rem 0 1.5rem;
-    opacity: 0.7;
+    font-size: 18px;
+    margin: 0.6rem 0 1.8rem;
   }
 
-  .slide-intro .landing-lotus { color: #8b6914; }
-  .slide-ipgo .landing-lotus { color: #c8a96e; }
+  .slide-intro .landing-lotus { color: #8b6914; opacity: 0.8; }
+  .slide-ipgo .landing-lotus { color: #c8a96e; opacity: 0.8; }
 
-  /* 랜딩 버튼 */
+  /* 버튼 */
   .landing-btn {
     display: inline-block;
-    padding: 14px 40px;
+    padding: 15px 44px;
     border-radius: 40px;
     font-family: 'Noto Serif KR', serif;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 400;
     cursor: pointer;
-    border: 1px solid;
+    background: transparent;
     letter-spacing: 0.08em;
     transition: all 0.25s;
-    background: transparent;
   }
 
   .btn-intro {
-    border-color: rgba(100, 70, 30, 0.5);
+    border: 1px solid rgba(90, 62, 30, 0.45);
     color: #5a3e1e;
   }
 
   .btn-intro:hover {
-    background: rgba(100, 70, 30, 0.1);
+    background: rgba(90, 62, 30, 0.08);
   }
 
   .btn-ipgo {
-    border-color: rgba(200, 169, 110, 0.5);
+    border: 1px solid rgba(200, 169, 110, 0.5);
     color: #c8a96e;
-    width: 80%;
+    min-width: 200px;
   }
 
   .btn-ipgo:hover {
@@ -265,31 +227,57 @@
   }
 
   .btn-enter {
-    border-color: rgba(200, 169, 110, 0.5);
+    border: 1px solid rgba(200, 169, 110, 0.5);
     color: #c8a96e;
-    width: 80%;
-    font-size: 15px;
+    min-width: 200px;
+    font-size: 16px;
   }
 
   .btn-enter:hover {
-    background: rgba(200, 169, 110, 0.15);
+    background: rgba(200, 169, 110, 0.12);
   }
 
-  @keyframes landingFadeIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* 스님 말씀 박스 */
+  .monk-quote-box {
+    background: rgba(8, 5, 2, 0.8);
+    border: 1px solid rgba(200, 169, 110, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .landing-slide.active .slide-bottom,
-  .landing-slide.active .slide-content {
-    animation: landingFadeIn 1s ease 0.4s both;
+  .monk-quote-box .lotus {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #c8a96e;
+  }
+
+  .monk-quote-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    line-height: 2.1;
+    color: #e8d5b0;
+    font-weight: 300;
+  }
+
+  .monk-waiting {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    color: rgba(200, 169, 110, 0.7);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
   }
 
   .landing-dots {
     display: flex;
     justify-content: center;
     gap: 6px;
-    margin: 1rem 0;
+    margin: 0.8rem 0 1.5rem;
   }
 
   .landing-dot {
@@ -299,7 +287,17 @@
     transition: background 0.3s;
   }
 
-  .landing-dot.active { background: rgba(200, 169, 110, 0.9); }
+  .landing-dot.active { background: rgba(200, 169, 110, 0.85); }
+
+  @keyframes landingFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .landing-slide.active .slide-bottom,
+  .landing-slide.active .slide-content {
+    animation: landingFadeIn 1s ease 0.3s both;
+  }
 
   /* ===== 홈 ===== */
   #home {
