@@ -67,7 +67,7 @@ body {
 
 #ls0 { background-image: url('/intro.png'); }
 #ls1 { background-image: url('/ipgo.png'); }
-#ls2 { background-image: url('/monk.png'); background-position: center top; }
+#ls2 { background-image: url('/monk.png'); background-position: center center; }
 
 .ls-bottom {
   padding: 6rem 2rem 3.5rem;
@@ -88,7 +88,7 @@ body {
 }
 
 #ls2 .ls-bottom {
-  background: linear-gradient(to bottom, transparent, rgba(4,2,0,0.97) 35%);
+  background: linear-gradient(to bottom, transparent, rgba(4,2,0,0.97) 50%);
 }
 
 .ls-title {
@@ -144,8 +144,8 @@ body {
   background: rgba(6,3,0,0.82);
   border: 1px solid rgba(200,169,110,0.3);
   border-radius: 16px;
-  padding: 1.5rem;
-  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
+  margin: 0 auto 1rem;
   max-width: 480px;
   text-align: left;
 }
@@ -159,8 +159,8 @@ body {
 
 .monk-box-text {
   font-family: 'Noto Serif KR', serif;
-  font-size: 15px;
-  line-height: 2.1;
+  font-size: 14px;
+  line-height: 1.9;
   color: #e8d5b0;
   font-weight: 300;
 }
@@ -491,7 +491,12 @@ main {
   <div class="ls on" id="ls0">
     <div class="ls-bottom">
       <h1 class="ls-title">마음이 무거울 때,<br>잠시 들어오십시오</h1>
-      <p class="ls-symbol">❧</p>
+      <p class="ls-symbol"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle">
+  <path d="M12 3C12 3 9 6 9 9C9 11.5 10.5 13.5 12 14C13.5 13.5 15 11.5 15 9C15 6 12 3 12 3Z" fill="#c8a96e" opacity="0.9"/>
+  <path d="M12 3C12 3 6 5 5 9C4.5 11.5 6 13.5 9 14C10 12 10.5 10 12 9C13.5 10 14 12 15 14C18 13.5 19.5 11.5 19 9C18 5 12 3 12 3Z" fill="#c8a96e" opacity="0.7"/>
+  <path d="M12 14C12 14 8 13 6 15C5 16 5.5 18 7 19C8.5 20 10.5 19.5 12 18C13.5 19.5 15.5 20 17 19C18.5 18 19 16 18 15C16 13 12 14 12 14Z" fill="#c8a96e" opacity="0.85"/>
+  <path d="M12 18V22" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+</svg></p>
       <button class="ls-btn" onclick="landingNext()">문을 열기</button>
     </div>
   </div>
@@ -500,7 +505,12 @@ main {
   <div class="ls" id="ls1">
     <div class="ls-bottom">
       <h1 class="ls-title">모든 것은 이미 지나가고 있습니다<br><span style="font-size:90%">다만, 붙잡고 있을 뿐입니다</span></h1>
-      <p class="ls-symbol">☸</p>
+      <p class="ls-symbol"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle">
+  <path d="M12 3C12 3 9 6 9 9C9 11.5 10.5 13.5 12 14C13.5 13.5 15 11.5 15 9C15 6 12 3 12 3Z" fill="#c8a96e" opacity="0.9"/>
+  <path d="M12 3C12 3 6 5 5 9C4.5 11.5 6 13.5 9 14C10 12 10.5 10 12 9C13.5 10 14 12 15 14C18 13.5 19.5 11.5 19 9C18 5 12 3 12 3Z" fill="#c8a96e" opacity="0.7"/>
+  <path d="M12 14C12 14 8 13 6 15C5 16 5.5 18 7 19C8.5 20 10.5 19.5 12 18C13.5 19.5 15.5 20 17 19C18.5 18 19 16 18 15C16 13 12 14 12 14Z" fill="#c8a96e" opacity="0.85"/>
+  <path d="M12 18V22" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+</svg></p>
       <button class="ls-btn" onclick="landingNext()">마주하기</button>
     </div>
   </div>
@@ -509,7 +519,12 @@ main {
   <div class="ls" id="ls2">
     <div class="ls-bottom">
       <div class="monk-box">
-        <p class="monk-box-lotus">☸</p>
+        <p class="monk-box-lotus"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle">
+  <path d="M12 3C12 3 9 6 9 9C9 11.5 10.5 13.5 12 14C13.5 13.5 15 11.5 15 9C15 6 12 3 12 3Z" fill="#c8a96e" opacity="0.9"/>
+  <path d="M12 3C12 3 6 5 5 9C4.5 11.5 6 13.5 9 14C10 12 10.5 10 12 9C13.5 10 14 12 15 14C18 13.5 19.5 11.5 19 9C18 5 12 3 12 3Z" fill="#c8a96e" opacity="0.7"/>
+  <path d="M12 14C12 14 8 13 6 15C5 16 5.5 18 7 19C8.5 20 10.5 19.5 12 18C13.5 19.5 15.5 20 17 19C18.5 18 19 16 18 15C16 13 12 14 12 14Z" fill="#c8a96e" opacity="0.85"/>
+  <path d="M12 18V22" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+</svg></p>
         <p class="monk-box-text">밖의 소리가 여기까지 들리더군요.<br>애써 설명하려 하지 않아도 괜찮습니다.<br><br>그저 이곳의 고요함이,<br>당신의 소란보다 조금 더 길어질 때까지,<br>잠시 마주 앉아 있어 보지요.</p>
       </div>
       <p class="monk-waiting">스님께서 말씀을 듣고 있습니다...</p>
