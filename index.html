@@ -140,61 +140,37 @@
 
   /* 슬라이드 1 — 절 외관 */
   .slide-intro {
-    background: #e8ddd0;
-  }
-
-  .slide-intro .slide-img {
-    flex: 1;
-    background: url('intro.png') center center / cover no-repeat;
-    min-height: 60vh;
+    background: url('/intro.png') center center / cover no-repeat;
+    justify-content: flex-end;
   }
 
   .slide-intro .slide-bottom {
-    background: #f0e8dc;
-    padding: 2rem 2rem 2.5rem;
+    background: linear-gradient(to bottom, transparent, rgba(240, 232, 220, 0.97) 30%);
+    padding: 3rem 2rem 3rem;
     text-align: center;
   }
 
   /* 슬라이드 2 — 불상 */
   .slide-ipgo {
-    background: #1a1008;
-  }
-
-  .slide-ipgo .slide-img {
-    flex: 1;
-    background: url('ipgo.png') center center / cover no-repeat;
-    min-height: 60vh;
-  }
-
-  .slide-ipgo .slide-bottom {
-    background: linear-gradient(to bottom, #2a1f10, #1a1008);
-    padding: 2rem 2rem 2.5rem;
-    text-align: center;
-  }
-
-  /* 슬라이드 3 — 스님 맞이 */
-  .slide-monk {
-    background: #0a0806;
+    background: url('/ipgo.png') center center / cover no-repeat;
     justify-content: flex-end;
   }
 
-  .slide-monk .slide-bg {
-    position: absolute;
-    inset: 0;
-    background: url('monk.png') center top / cover no-repeat;
+  .slide-ipgo .slide-bottom {
+    background: linear-gradient(to bottom, transparent, rgba(15, 10, 4, 0.96) 25%);
+    padding: 3rem 2rem 3rem;
+    text-align: center;
   }
 
-  .slide-monk .slide-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.85) 80%);
+  /* 슬라이드 3 — 스님 */
+  .slide-monk {
+    background: url('/monk.png') center top / cover no-repeat;
+    justify-content: flex-end;
   }
 
   .slide-monk .slide-content {
-    position: relative;
-    z-index: 2;
-    padding: 2rem;
-    padding-bottom: 3rem;
+    background: linear-gradient(to bottom, transparent, rgba(5, 3, 1, 0.95) 20%);
+    padding: 2rem 1.5rem 3rem;
     text-align: center;
   }
 
@@ -235,7 +211,7 @@
     font-family: 'Noto Serif KR', serif;
     font-size: clamp(18px, 5vw, 24px);
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 0.5rem;
   }
 
@@ -244,7 +220,7 @@
 
   .landing-lotus {
     font-size: 16px;
-    margin: 0.5rem 0 1.2rem;
+    margin: 0.5rem 0 1.5rem;
     opacity: 0.7;
   }
 
@@ -263,36 +239,32 @@
     border: 1px solid;
     letter-spacing: 0.08em;
     transition: all 0.25s;
+    background: transparent;
   }
 
   .btn-intro {
-    background: transparent;
-    border-color: rgba(100, 70, 30, 0.4);
+    border-color: rgba(100, 70, 30, 0.5);
     color: #5a3e1e;
   }
 
   .btn-intro:hover {
     background: rgba(100, 70, 30, 0.1);
-    border-color: rgba(100, 70, 30, 0.7);
   }
 
   .btn-ipgo {
-    background: transparent;
-    border-color: rgba(200, 169, 110, 0.4);
+    border-color: rgba(200, 169, 110, 0.5);
     color: #c8a96e;
-    width: 85%;
+    width: 80%;
   }
 
   .btn-ipgo:hover {
     background: rgba(200, 169, 110, 0.1);
-    border-color: rgba(200, 169, 110, 0.7);
   }
 
   .btn-enter {
-    background: transparent;
     border-color: rgba(200, 169, 110, 0.5);
     color: #c8a96e;
-    width: 85%;
+    width: 80%;
     font-size: 15px;
   }
 
@@ -300,18 +272,16 @@
     background: rgba(200, 169, 110, 0.15);
   }
 
-  /* 페이드 애니메이션 */
   @keyframes landingFadeIn {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .landing-slide.active .slide-bottom,
   .landing-slide.active .slide-content {
-    animation: landingFadeIn 0.9s ease 0.3s both;
+    animation: landingFadeIn 1s ease 0.4s both;
   }
 
-  /* 스크롤 닷 인디케이터 */
   .landing-dots {
     display: flex;
     justify-content: center;
@@ -995,7 +965,6 @@
 
     <!-- 슬라이드 1: 절 외관 -->
     <div class="landing-slide slide-intro active" id="slide-0">
-      <div class="slide-img"></div>
       <div class="slide-bottom">
         <h1 class="landing-title">마음이 무거울 때,<br>잠시 들어오십시오</h1>
         <p class="landing-lotus">❧</p>
@@ -1005,18 +974,15 @@
 
     <!-- 슬라이드 2: 불상 -->
     <div class="landing-slide slide-ipgo" id="slide-1">
-      <div class="slide-img"></div>
       <div class="slide-bottom">
-        <h1 class="landing-title" style="color:#c8a96e">모든 것은 이미 지나가고 있습니다<br><span style="font-size:90%">다만, 붙잡고 있을 뿐입니다</span></h1>
-        <p class="landing-lotus" style="color:#c8a96e">☸</p>
+        <h1 class="landing-title">모든 것은 이미 지나가고 있습니다<br><span style="font-size:90%">다만, 붙잡고 있을 뿐입니다</span></h1>
+        <p class="landing-lotus">☸</p>
         <button class="landing-btn btn-ipgo" onclick="landingNext()">마주하기</button>
       </div>
     </div>
 
     <!-- 슬라이드 3: 스님 맞이 -->
     <div class="landing-slide slide-monk" id="slide-2">
-      <div class="slide-bg"></div>
-      <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="monk-quote-box">
           <p class="lotus">☸</p>
