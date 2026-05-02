@@ -113,6 +113,220 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ===== 랜딩 페이지 ===== */
+  #landing {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    overflow: hidden;
+    background: #0a0806;
+  }
+
+  .landing-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+  }
+
+  .landing-slide.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* 슬라이드 1 — 절 외관 */
+  .slide-intro {
+    background: #e8ddd0;
+  }
+
+  .slide-intro .slide-img {
+    flex: 1;
+    background: url('intro.png') center top / cover no-repeat;
+    min-height: 60vh;
+  }
+
+  .slide-intro .slide-bottom {
+    background: #f0e8dc;
+    padding: 2rem 2rem 2.5rem;
+    text-align: center;
+  }
+
+  /* 슬라이드 2 — 불상 */
+  .slide-ipgo {
+    background: #1a1008;
+  }
+
+  .slide-ipgo .slide-img {
+    flex: 1;
+    background: url('ipgo.png') center top / cover no-repeat;
+    min-height: 60vh;
+  }
+
+  .slide-ipgo .slide-bottom {
+    background: linear-gradient(to bottom, #2a1f10, #1a1008);
+    padding: 2rem 2rem 2.5rem;
+    text-align: center;
+  }
+
+  /* 슬라이드 3 — 스님 맞이 */
+  .slide-monk {
+    background: #0a0806;
+    justify-content: flex-end;
+  }
+
+  .slide-monk .slide-bg {
+    position: absolute;
+    inset: 0;
+    background: url('monk.png') center top / cover no-repeat;
+  }
+
+  .slide-monk .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.85) 80%);
+  }
+
+  .slide-monk .slide-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    padding-bottom: 3rem;
+    text-align: center;
+  }
+
+  .monk-quote-box {
+    background: rgba(10, 8, 6, 0.82);
+    border: 1px solid rgba(200, 169, 110, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  .monk-quote-box .lotus {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--gold);
+  }
+
+  .monk-quote-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    line-height: 2;
+    color: #e8d5b0;
+    font-weight: 300;
+  }
+
+  .monk-waiting {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    color: rgba(200, 169, 110, 0.8);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  /* 공통 텍스트 */
+  .landing-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(18px, 5vw, 24px);
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .slide-intro .landing-title { color: #3d2e1e; }
+  .slide-ipgo .landing-title { color: #c8a96e; }
+
+  .landing-lotus {
+    font-size: 16px;
+    margin: 0.5rem 0 1.2rem;
+    opacity: 0.7;
+  }
+
+  .slide-intro .landing-lotus { color: #8b6914; }
+  .slide-ipgo .landing-lotus { color: #c8a96e; }
+
+  /* 랜딩 버튼 */
+  .landing-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    border-radius: 40px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    border: 1px solid;
+    letter-spacing: 0.08em;
+    transition: all 0.25s;
+  }
+
+  .btn-intro {
+    background: transparent;
+    border-color: rgba(100, 70, 30, 0.4);
+    color: #5a3e1e;
+  }
+
+  .btn-intro:hover {
+    background: rgba(100, 70, 30, 0.1);
+    border-color: rgba(100, 70, 30, 0.7);
+  }
+
+  .btn-ipgo {
+    background: transparent;
+    border-color: rgba(200, 169, 110, 0.4);
+    color: #c8a96e;
+    width: 85%;
+  }
+
+  .btn-ipgo:hover {
+    background: rgba(200, 169, 110, 0.1);
+    border-color: rgba(200, 169, 110, 0.7);
+  }
+
+  .btn-enter {
+    background: transparent;
+    border-color: rgba(200, 169, 110, 0.5);
+    color: #c8a96e;
+    width: 85%;
+    font-size: 15px;
+  }
+
+  .btn-enter:hover {
+    background: rgba(200, 169, 110, 0.15);
+  }
+
+  /* 페이드 애니메이션 */
+  @keyframes landingFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .landing-slide.active .slide-bottom,
+  .landing-slide.active .slide-content {
+    animation: landingFadeIn 0.9s ease 0.3s both;
+  }
+
+  /* 스크롤 닷 인디케이터 */
+  .landing-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 1rem 0;
+  }
+
+  .landing-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(200, 169, 110, 0.3);
+    transition: background 0.3s;
+  }
+
+  .landing-dot.active { background: rgba(200, 169, 110, 0.9); }
+
   /* ===== 홈 ===== */
   #home {
     display: flex;
@@ -775,6 +989,50 @@
 
 <main>
 
+  <!-- 랜딩 페이지 -->
+  <div id="landing">
+
+    <!-- 슬라이드 1: 절 외관 -->
+    <div class="landing-slide slide-intro active" id="slide-0">
+      <div class="slide-img"></div>
+      <div class="slide-bottom">
+        <h1 class="landing-title">마음이 무거울 때,<br>잠시 들어오십시오</h1>
+        <p class="landing-lotus">❧</p>
+        <button class="landing-btn btn-intro" onclick="landingNext()">문을 열기</button>
+      </div>
+    </div>
+
+    <!-- 슬라이드 2: 불상 -->
+    <div class="landing-slide slide-ipgo" id="slide-1">
+      <div class="slide-img"></div>
+      <div class="slide-bottom">
+        <h1 class="landing-title" style="color:#c8a96e">모든 것은 이미 지나가고 있습니다<br><span style="font-size:90%">다만, 붙잡고 있을 뿐입니다</span></h1>
+        <p class="landing-lotus" style="color:#c8a96e">☸</p>
+        <button class="landing-btn btn-ipgo" onclick="landingNext()">마주하기</button>
+      </div>
+    </div>
+
+    <!-- 슬라이드 3: 스님 맞이 -->
+    <div class="landing-slide slide-monk" id="slide-2">
+      <div class="slide-bg"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="monk-quote-box">
+          <p class="lotus">☸</p>
+          <p class="monk-quote-text">밖의 소리가 여기까지 들리더군요.<br>애써 설명하려 하지 않아도 괜찮습니다.<br><br>그저 이곳의 고요함이,<br>당신의 소란보다 조금 더 길어질 때까지,<br>잠시 마주 앉아 있어 보지요.</p>
+        </div>
+        <p class="monk-waiting">스님께서 말씀을 듣고 있습니다...</p>
+        <div class="landing-dots">
+          <div class="landing-dot"></div>
+          <div class="landing-dot active"></div>
+          <div class="landing-dot"></div>
+        </div>
+        <button class="landing-btn btn-enter" onclick="enterTemple()">고민을 여쭙겠습니다</button>
+      </div>
+    </div>
+
+  </div>
+
   <!-- 홈 -->
   <section id="home" class="section active">
     <div class="home-symbol">☸️</div>
@@ -789,7 +1047,6 @@
       <button class="btn-secondary" onclick="showSection('maeum')">마음 나누기</button>
     </div>
   </section>
-
   <!-- 고민 상담 — 채팅 형식 -->
   <section id="consult" class="section">
     <div class="consult-top">
@@ -876,6 +1133,175 @@
 <div class="toast" id="toast"></div>
 
 <script>
+
+// ===== 오디오 엔진 =====
+let audioCtx = null;
+let windNodes = [];
+let isWindPlaying = false;
+
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+
+// 바람 소리 (화이트노이즈 필터링)
+function startWind() {
+  if (isWindPlaying) return;
+  isWindPlaying = true;
+  const ctx = getAudioCtx();
+
+  // 화이트노이즈 버퍼
+  const bufferSize = ctx.sampleRate * 3;
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+
+  const noise = ctx.createBufferSource();
+  noise.buffer = buffer;
+  noise.loop = true;
+
+  // 바람 느낌 필터
+  const bandpass = ctx.createBiquadFilter();
+  bandpass.type = 'bandpass';
+  bandpass.frequency.value = 400;
+  bandpass.Q.value = 0.5;
+
+  const lowpass = ctx.createBiquadFilter();
+  lowpass.type = 'lowpass';
+  lowpass.frequency.value = 800;
+
+  // 흔들리는 바람 느낌 (LFO)
+  const lfo = ctx.createOscillator();
+  lfo.frequency.value = 0.15;
+  const lfoGain = ctx.createGain();
+  lfoGain.gain.value = 200;
+  lfo.connect(lfoGain);
+  lfoGain.connect(bandpass.frequency);
+  lfo.start();
+
+  const gainNode = ctx.createGain();
+  gainNode.gain.setValueAtTime(0, ctx.currentTime);
+  gainNode.gain.linearRampToValueAtTime(0.12, ctx.currentTime + 2);
+
+  noise.connect(bandpass);
+  bandpass.connect(lowpass);
+  lowpass.connect(gainNode);
+  gainNode.connect(ctx.destination);
+  noise.start();
+
+  windNodes = [noise, lfo, gainNode];
+
+  // 새소리 주기적으로 재생
+  scheduleBirds(ctx);
+}
+
+function stopWind() {
+  if (!isWindPlaying) return;
+  isWindPlaying = false;
+  const ctx = getAudioCtx();
+  windNodes.forEach(n => {
+    try {
+      if (n.gain) {
+        n.gain.linearRampToValueAtTime(0, ctx.currentTime + 1.5);
+      } else {
+        n.stop(ctx.currentTime + 1.5);
+      }
+    } catch(e) {}
+  });
+  windNodes = [];
+  if (birdTimeout) clearTimeout(birdTimeout);
+}
+
+let birdTimeout = null;
+
+function scheduleBirds(ctx) {
+  const delay = 4000 + Math.random() * 8000;
+  birdTimeout = setTimeout(() => {
+    if (!isWindPlaying) return;
+    playBird(ctx);
+    scheduleBirds(ctx);
+  }, delay);
+}
+
+// 새소리 (사인파 조합)
+function playBird(ctx) {
+  const notes = [
+    { freq: 2800, dur: 0.12 },
+    { freq: 3200, dur: 0.10 },
+    { freq: 2600, dur: 0.18 },
+  ];
+  let time = ctx.currentTime + 0.1;
+  notes.forEach(note => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = note.freq;
+    gain.gain.setValueAtTime(0, time);
+    gain.gain.linearRampToValueAtTime(0.08, time + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, time + note.dur);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(time);
+    osc.stop(time + note.dur);
+    time += note.dur + 0.05 + Math.random() * 0.1;
+  });
+}
+
+// 종소리 (절 종 느낌)
+function playBell() {
+  const ctx = getAudioCtx();
+  const now = ctx.currentTime;
+
+  // 종의 기본음 + 배음
+  const harmonics = [
+    { freq: 220, gain: 0.5 },
+    { freq: 440, gain: 0.3 },
+    { freq: 660, gain: 0.15 },
+    { freq: 880, gain: 0.08 },
+    { freq: 1320, gain: 0.04 },
+  ];
+
+  harmonics.forEach(h => {
+    const osc = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.value = h.freq;
+
+    gainNode.gain.setValueAtTime(0, now);
+    gainNode.gain.linearRampToValueAtTime(h.gain, now + 0.01);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, now + 6.0);
+
+    osc.connect(gainNode);
+    gainNode.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 6.5);
+  });
+
+  // 잔향 (리버브 느낌)
+  const reverb = ctx.createConvolver();
+  const revBuffer = ctx.createBuffer(2, ctx.sampleRate * 2, ctx.sampleRate);
+  for (let ch = 0; ch < 2; ch++) {
+    const d = revBuffer.getChannelData(ch);
+    for (let i = 0; i < d.length; i++) {
+      d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 2);
+    }
+  }
+  reverb.buffer = revBuffer;
+
+  const bellOsc = ctx.createOscillator();
+  const bellGain = ctx.createGain();
+  bellOsc.type = 'sine';
+  bellOsc.frequency.value = 220;
+  bellGain.gain.setValueAtTime(0.3, now);
+  bellGain.gain.exponentialRampToValueAtTime(0.001, now + 5);
+  bellOsc.connect(bellGain);
+  bellGain.connect(reverb);
+  reverb.connect(ctx.destination);
+  bellOsc.start(now);
+  bellOsc.stop(now + 6);
+}
+
 // ===== 상태 =====
 let selectedScripture = '전체';
 let chatHistory = [];
@@ -1253,6 +1679,13 @@ function showSection(id) {
   if (navBtn) navBtn.classList.add('active');
 
   if (id === 'maeum') renderMaeum();
+  if (id === 'consult') {
+    setTimeout(() => playBell(), 300);
+    setTimeout(() => stopWind(), 7000);
+  }
+  if (id === 'home') {
+    stopWind();
+  }
 }
 
 function selectScripture(el, val) {
@@ -1270,6 +1703,41 @@ function showToast(msg) {
 }
 
 // ===== 초기화 =====
+
+// ===== 랜딩 페이지 =====
+let currentSlide = 0;
+const totalSlides = 3;
+
+function landingNext() {
+  const curr = document.getElementById('slide-' + currentSlide);
+  curr.classList.remove('active');
+
+  currentSlide++;
+
+  if (currentSlide === 1) {
+    // 슬라이드 2 진입: 종소리
+    setTimeout(() => playBell(), 400);
+  }
+
+  const next = document.getElementById('slide-' + currentSlide);
+  if (next) next.classList.add('active');
+}
+
+function enterTemple() {
+  // 랜딩 페이지 숨기고 메인으로
+  startWind();
+  const landing = document.getElementById('landing');
+  landing.style.transition = 'opacity 1s ease';
+  landing.style.opacity = '0';
+  setTimeout(() => {
+    landing.style.display = 'none';
+    showSection('consult');
+    // 상담 화면 진입시 종소리
+    setTimeout(() => playBell(), 500);
+    setTimeout(() => stopWind(), 8000);
+  }, 1000);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   loadDharma();
   renderMaeum();
