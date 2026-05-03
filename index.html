@@ -300,11 +300,15 @@ main {
 
 /* 고민상담 */
 #consult {
-  display: flex;
+  display: none;
   flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
   background: #f5ede0;
+  z-index: 50;
 }
 #consult.active { display: flex; }
 
