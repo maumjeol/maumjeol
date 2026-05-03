@@ -308,7 +308,7 @@ main {
   width: 100vw;
   overflow: hidden;
   background: #f5ede0;
-  z-index: 50;
+  z-index: 150;
 }
 #consult.active { display: flex; }
 
@@ -368,11 +368,15 @@ main {
 }
 
 .chat-input-box {
-  display: flex; gap: 10px; align-items: flex-end;
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
   background: white;
   border: 1px solid rgba(200,169,110,0.25);
-  border-radius: 16px; padding: 12px 14px;
+  border-radius: 16px;
+  padding: 12px 14px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  width: 100%;
 }
 
 .chat-hint {
@@ -1249,7 +1253,10 @@ function enterTemple() {
   landing.style.opacity = '0';
   setTimeout(() => {
     landing.style.display = 'none';
-    showSection('consult');
+    // 헤더/main은 숨긴 채로 consult만 직접 표시
+    const consult = document.getElementById('consult');
+    consult.classList.add('active');
+    document.getElementById('bnav-consult').classList.add('active');
     setTimeout(() => playBell(), 500);
     setTimeout(() => stopWind(), 8000);
   }, 1000);
