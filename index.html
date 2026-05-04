@@ -308,7 +308,7 @@ main {
   width: 100vw;
   overflow: hidden;
   background: #f5ede0;
-  z-index: 150;
+  z-index: 9998;
 }
 #consult.active { display: flex; }
 
@@ -1253,8 +1253,12 @@ function enterTemple() {
   landing.style.opacity = '0';
   setTimeout(() => {
     landing.style.display = 'none';
-    // 헤더/main은 숨긴 채로 consult만 직접 표시
+    // 헤더 완전히 숨기기
+    document.getElementById('main-header').style.display = 'none';
+    document.getElementById('main-content').style.display = 'none';
+    // consult만 보이게
     const consult = document.getElementById('consult');
+    consult.style.display = 'flex';
     consult.classList.add('active');
     document.getElementById('bnav-consult').classList.add('active');
     setTimeout(() => playBell(), 500);
