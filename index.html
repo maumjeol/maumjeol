@@ -312,9 +312,8 @@ main {
   background: #f5ede0;
 }
 
-/* 상단 이미지 영역: 화면의 62% */
 .consult-bg {
-  height: 62vh;
+  height: 65vh;
   flex-shrink: 0;
   background: url('/main2.png') center top / cover no-repeat;
   display: flex;
@@ -323,63 +322,65 @@ main {
 }
 
 .consult-monk-area {
-  background: linear-gradient(to bottom, transparent 0%, rgba(245,237,224,0.97) 50%);
-  padding: 2.5rem 1.5rem 0.8rem;
+  background: linear-gradient(to bottom, transparent 0%, rgba(245,237,224,0.97) 45%);
+  padding: 2rem 1.5rem 0.6rem;
   text-align: center;
 }
 
 .consult-monk-status {
   font-family: 'Noto Serif KR', serif;
-  font-size: 16px;
+  font-size: 15px;
   color: #5a4020;
   letter-spacing: 0.03em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .consult-lotus { margin-bottom: 0.3rem; opacity: 0.7; }
 .consult-dot-wrap { display: flex; justify-content: center; }
 .consult-dot {
-  width: 7px; height: 7px; border-radius: 50%;
+  width: 6px; height: 6px; border-radius: 50%;
   background: rgba(180,140,60,0.5);
+  margin-top: 4px;
 }
 
-/* 하단 입력 영역: 나머지 38% */
 .consult-bottom {
   flex: 1;
   background: #f5ede0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   min-height: 0;
 }
 
+/* 채팅 메시지는 스크롤 */
 .chat-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.6rem;
   min-height: 0;
 }
+.chat-messages:empty { display: none; }
 .chat-messages::-webkit-scrollbar { width: 3px; }
 .chat-messages::-webkit-scrollbar-thumb { background: rgba(200,169,110,0.3); border-radius: 2px; }
 
 .chat-input-wrap {
-  padding: 0.6rem 1rem 0.4rem;
+  padding: 0.5rem 1rem 0.3rem;
   background: #f5ede0;
   flex-shrink: 0;
 }
 
 .chat-input-box {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
   background: white;
   border: 1px solid rgba(200,169,110,0.25);
-  border-radius: 16px;
+  border-radius: 14px;
   padding: 10px 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
   width: 100%;
 }
 
@@ -395,13 +396,13 @@ main {
   background: transparent;
   resize: none;
   line-height: 1.5;
-  max-height: 80px;
+  max-height: 72px;
   overflow-y: auto;
 }
 #chat-textarea::placeholder { color: #b8afa8; }
 
 .send-btn {
-  width: 34px; height: 34px;
+  width: 32px; height: 32px;
   border-radius: 50%;
   background: #1a1612;
   border: none;
@@ -411,24 +412,24 @@ main {
   justify-content: center;
   flex-shrink: 0;
   color: #faf7f2;
-  font-size: 16px;
+  font-size: 15px;
+  transition: all 0.2s;
 }
 .send-btn:disabled { opacity: 0.4; }
 
 .chat-hint {
   font-size: 11px;
-  color: rgba(120,100,70,0.55);
+  color: rgba(120,100,70,0.5);
   text-align: center;
-  margin-top: 4px;
+  margin-top: 3px;
   letter-spacing: 0.02em;
 }
 
-/* 하단 탭바 */
 .bottom-nav {
   display: flex;
   background: #ede0cc;
   border-top: 1px solid rgba(200,169,110,0.2);
-  padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+  padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
   flex-shrink: 0;
 }
 .bnav-btn {
@@ -436,7 +437,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   background: none;
   border: none;
   cursor: pointer;
@@ -1356,6 +1357,13 @@ function enterTemple() {
 
 // consult 보이기
 function goConsult() {
+  // 채팅 메시지 초기화
+  const msgs = document.getElementById('chat-messages');
+  if (msgs) msgs.innerHTML = '';
+  chatHistory = [];
+  lastWorry = '';
+  lastAnswer = '';
+
   document.getElementById('consult').style.display = 'flex';
   document.getElementById('main-content').style.display = 'none';
   document.getElementById('main-header').style.display = 'none';
