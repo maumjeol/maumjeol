@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -303,18 +304,17 @@ main {
   display: none;
   flex-direction: column;
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  height: 100vh;
+  top: 0; left: 0;
   width: 100vw;
+  height: 100vh;
+  z-index: 9998;
   overflow: hidden;
   background: #f5ede0;
-  z-index: 9998;
 }
-#consult.active { display: flex; }
 
 .consult-bg {
-  background: url('/main2.png') center top / cover no-repeat;
   flex: 1;
+  background: url('/main2.png') center top / cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -336,7 +336,6 @@ main {
 }
 
 .consult-lotus { margin-bottom: 0.4rem; opacity: 0.7; }
-
 .consult-dot-wrap { display: flex; justify-content: center; }
 .consult-dot {
   width: 7px; height: 7px; border-radius: 50%;
@@ -351,10 +350,9 @@ main {
 }
 
 .chat-messages {
-  flex: 1;
   overflow-y: auto;
   padding: 0.5rem 1rem;
-  max-height: 180px;
+  max-height: 160px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -386,6 +384,33 @@ main {
   margin-top: 5px;
   letter-spacing: 0.02em;
 }
+
+/* 하단 탭바 */
+.bottom-nav {
+  display: flex;
+  background: #f0e6d3;
+  border-top: 1px solid rgba(200,169,110,0.2);
+  padding: 0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom));
+}
+.bnav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.bnav-icon { font-size: 20px; line-height: 1; }
+.bnav-label {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--ink-muted);
+}
+.bnav-btn.active .bnav-label { color: var(--ember); }
 
 /* 마음 올리기 */
 #maeum { padding: 2rem; max-width: 680px; margin: 0 auto; }
@@ -487,6 +512,7 @@ main {
 .bnav-btn.active .bnav-label { color: var(--ember); }
 
 .toast.show { transform: translateX(-50%) translateY(0); }
+
 </style>
 </head>
 <body>
@@ -545,7 +571,7 @@ main {
 
 </div>
 
-<!-- ===================== 메인 앱 ===================== -->
+<!-- 헤더 (enterTemple 후 필요시 표시) -->
 <header id="main-header" style="display:none">
   <div class="logo" onclick="showSection('home')">
     <span class="logo-symbol">☸</span>
@@ -559,6 +585,56 @@ main {
   </nav>
 </header>
 
+<!-- 고민 상담 (position:fixed, 독립적) -->
+<section id="consult" style="display:none">
+  <div class="consult-bg">
+    <div class="consult-monk-area">
+      <p class="consult-monk-status">스님께서 조용히 듣고 계십니다...</p>
+      <div class="consult-lotus">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3C12 3 9 6 9 9C9 11.5 10.5 13.5 12 14C13.5 13.5 15 11.5 15 9C15 6 12 3 12 3Z" fill="#c8a96e" opacity="0.9"/>
+          <path d="M12 3C12 3 6 5 5 9C4.5 11.5 6 13.5 9 14C10 12 10.5 10 12 9C13.5 10 14 12 15 14C18 13.5 19.5 11.5 19 9C18 5 12 3 12 3Z" fill="#c8a96e" opacity="0.7"/>
+          <path d="M12 14C12 14 8 13 6 15C5 16 5.5 18 7 19C8.5 20 10.5 19.5 12 18C13.5 19.5 15.5 20 17 19C18.5 18 19 16 18 15C16 13 12 14 12 14Z" fill="#c8a96e" opacity="0.85"/>
+        </svg>
+      </div>
+      <div class="consult-dot-wrap"><div class="consult-dot"></div></div>
+    </div>
+  </div>
+  <div class="consult-bottom">
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-wrap">
+      <div class="chat-input-box">
+        <textarea id="chat-textarea"
+          placeholder="마음에 맴도는 이야기를&#10;조용히 내려놓아 보십시오..."
+          rows="2"
+          oninput="autoResize(this)"
+          onkeydown="handleKey(event)"></textarea>
+        <button class="send-btn" id="send-btn" onclick="sendMessage()">↑</button>
+      </div>
+      <p class="chat-hint">말을 꺼내지 않아도 괜찮습니다 · 천천히 적어도 됩니다</p>
+    </div>
+    <nav class="bottom-nav">
+      <button onclick="goConsult()" id="bnav-consult" class="bnav-btn active">
+        <span class="bnav-icon">💬</span>
+        <span class="bnav-label">마음을 나누기</span>
+      </button>
+      <button onclick="showMain('maeum')" id="bnav-maeum" class="bnav-btn">
+        <span class="bnav-icon">🪷</span>
+        <span class="bnav-label">마음 올리기</span>
+      </button>
+      <button onclick="showMain('temple')" id="bnav-temple" class="bnav-btn">
+        <span class="bnav-icon">🏯</span>
+        <span class="bnav-label">머무를 곳 찾기</span>
+      </button>
+      <button onclick="showMain('dharma')" id="bnav-dharma" class="bnav-btn">
+        <span class="bnav-icon">👤</span>
+        <span class="bnav-label">나의 흔적</span>
+      </button>
+    </nav>
+  </div>
+</section>
+
+<!-- 메인 앱 (마음올리기, 법문, 사찰 등) -->
 <main id="main-content" style="display:none">
 
   <!-- 홈 -->
@@ -571,65 +647,8 @@ main {
       <p class="daily-card-text" id="home-daily">불러오는 중...</p>
     </div>
     <div class="cta-group">
-      <button class="btn-primary" onclick="showSection('consult')">고민 상담하기</button>
-      <button class="btn-secondary" onclick="showSection('maeum')">마음 나누기</button>
-    </div>
-  </section>
-
-  <!-- 고민 상담 -->
-  <section id="consult" class="section">
-    <!-- 상단: main2.png 스님 배경 -->
-    <div class="consult-bg">
-      <div class="consult-monk-area">
-        <p class="consult-monk-status">스님께서 조용히 듣고 계십니다...</p>
-        <div class="consult-lotus">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 3C12 3 9 6 9 9C9 11.5 10.5 13.5 12 14C13.5 13.5 15 11.5 15 9C15 6 12 3 12 3Z" fill="#c8a96e" opacity="0.9"/>
-            <path d="M12 3C12 3 6 5 5 9C4.5 11.5 6 13.5 9 14C10 12 10.5 10 12 9C13.5 10 14 12 15 14C18 13.5 19.5 11.5 19 9C18 5 12 3 12 3Z" fill="#c8a96e" opacity="0.7"/>
-            <path d="M12 14C12 14 8 13 6 15C5 16 5.5 18 7 19C8.5 20 10.5 19.5 12 18C13.5 19.5 15.5 20 17 19C18.5 18 19 16 18 15C16 13 12 14 12 14Z" fill="#c8a96e" opacity="0.85"/>
-          </svg>
-        </div>
-        <div class="consult-dot-wrap"><div class="consult-dot"></div></div>
-      </div>
-    </div>
-
-    <!-- 하단: 대화 입력 영역 -->
-    <div class="consult-bottom">
-      <!-- 채팅 메시지 (스님 답변이 여기 쌓임) -->
-      <div class="chat-messages" id="chat-messages"></div>
-
-      <!-- 입력창 -->
-      <div class="chat-input-wrap">
-        <div class="chat-input-box">
-          <textarea id="chat-textarea"
-            placeholder="마음에 맴도는 이야기를&#10;조용히 내려놓아 보십시오..."
-            rows="2"
-            oninput="autoResize(this)"
-            onkeydown="handleKey(event)"></textarea>
-          <button class="send-btn" id="send-btn" onclick="sendMessage()">↑</button>
-        </div>
-        <p class="chat-hint">말을 꺼내지 않아도 괜찮습니다 · 천천히 적어도 됩니다</p>
-      </div>
-
-      <!-- 하단 탭바 -->
-      <nav class="bottom-nav">
-        <button onclick="showSection('consult')" id="bnav-consult" class="bnav-btn active">
-          <span class="bnav-icon">💬</span>
-          <span class="bnav-label">마음을 나누기</span>
-        </button>
-        <button onclick="showSection('maeum')" id="bnav-maeum" class="bnav-btn">
-          <span class="bnav-icon">🪷</span>
-          <span class="bnav-label">마음 올리기</span>
-        </button>
-        <button onclick="showSection('temple')" id="bnav-temple" class="bnav-btn">
-          <span class="bnav-icon">🏯</span>
-          <span class="bnav-label">머무를 곳 찾기</span>
-        </button>
-        <button onclick="showSection('dharma')" id="bnav-dharma" class="bnav-btn">
-          <span class="bnav-icon">👤</span>
-          <span class="bnav-label">나의 흔적</span>
-        </button>
-      </nav>
+      <button class="btn-primary" onclick="goConsult()">고민 상담하기</button>
+      <button class="btn-secondary" onclick="showMain('maeum')">마음 나누기</button>
     </div>
   </section>
 
@@ -667,6 +686,7 @@ main {
 <div class="toast" id="toast"></div>
 
 <script>
+
 // ===== 오디오 엔진 =====
 let audioCtx = null;
 let windNodes = [];
@@ -1253,14 +1273,7 @@ function enterTemple() {
   landing.style.opacity = '0';
   setTimeout(() => {
     landing.style.display = 'none';
-    // 헤더 완전히 숨기기
-    document.getElementById('main-header').style.display = 'none';
-    document.getElementById('main-content').style.display = 'none';
-    // consult만 보이게
-    const consult = document.getElementById('consult');
-    consult.style.display = 'flex';
-    consult.classList.add('active');
-    document.getElementById('bnav-consult').classList.add('active');
+    document.getElementById('consult').style.display = 'flex';
     setTimeout(() => playBell(), 500);
     setTimeout(() => stopWind(), 8000);
   }, 1000);
@@ -1297,6 +1310,44 @@ function enterTemple() {
     showSection('consult');
     loadDharma();
     renderMaeum();
+    setTimeout(() => stopWind(), 8000);
+  }, 1000);
+}
+
+
+// consult 보이기
+function goConsult() {
+  document.getElementById('consult').style.display = 'flex';
+  document.getElementById('main-content').style.display = 'none';
+  document.getElementById('main-header').style.display = 'none';
+  document.querySelectorAll('.bnav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('bnav-consult').classList.add('active');
+}
+
+// 메인 앱 섹션 보이기
+function showMain(id) {
+  document.getElementById('consult').style.display = 'none';
+  document.getElementById('main-header').style.display = 'flex';
+  document.getElementById('main-content').style.display = 'block';
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  const section = document.getElementById(id);
+  if (section) section.classList.add('active');
+  const navBtn = document.getElementById('nav-' + id);
+  if (navBtn) navBtn.classList.add('active');
+  if (id === 'maeum') renderMaeum();
+}
+
+// enterTemple 재정의
+function enterTemple() {
+  startWind();
+  const landing = document.getElementById('landing');
+  landing.style.transition = 'opacity 1s ease';
+  landing.style.opacity = '0';
+  setTimeout(() => {
+    landing.style.display = 'none';
+    goConsult();
+    setTimeout(() => playBell(), 500);
     setTimeout(() => stopWind(), 8000);
   }, 1000);
 }
